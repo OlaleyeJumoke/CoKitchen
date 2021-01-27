@@ -14,6 +14,7 @@ class FoodScreen extends StatefulWidget {
 
 class _FoodScreenState extends State<FoodScreen> {
   SizeConfig sc = SizeConfig();
+  TextEditingController controller = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -96,9 +97,18 @@ class _FoodScreenState extends State<FoodScreen> {
                               SizedBox(
                                 width: sc.widthMargin(context, 4),
                               ),
-                              Text(
-                                "What are you craving?",
-                                style: CKTextstyle.subText,
+                              Expanded(
+                                child: Container(
+                                  height: sc.heightMargin(context, 4),
+                                  child: TextField(
+                                    controller: controller,
+                                    decoration: InputDecoration(
+                                      border: InputBorder.none,
+                                      hintText: "What are you craving?",
+                                      hintStyle: CKTextstyle.subText,
+                                    ),
+                                  ),
+                                ),
                               ),
                             ],
                           ),
@@ -152,18 +162,23 @@ class _FoodScreenState extends State<FoodScreen> {
             ),
           ),
           Positioned(
-            bottom: sc.heightMargin(context, 2),
-            left: sc.widthMargin(context, 3),
-            right: sc.widthMargin(context, 3),
-            child: Container(
-              width: double.infinity,
-              child: MaterialButton(onPressed: (){},
-              height: sc.heightMargin(context, 7),
-              
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(6)),
-          color: CKColors.green,
-          child: Text('Track order', style: CKTextstyle.buttonText,),),
-            ))
+              bottom: sc.heightMargin(context, 2),
+              left: sc.widthMargin(context, 3),
+              right: sc.widthMargin(context, 3),
+              child: Container(
+                width: double.infinity,
+                child: MaterialButton(
+                  onPressed: () {},
+                  height: sc.heightMargin(context, 7),
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(6)),
+                  color: CKColors.green,
+                  child: Text(
+                    'Track order',
+                    style: CKTextstyle.buttonText,
+                  ),
+                ),
+              ))
         ],
       )),
     );
